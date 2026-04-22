@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <title>Inventrix Homepage</title>
+</head>
+
+<body>
+  <div class="sidebar">
+    <!-- <div><img class="logo" src="inv-logo.jpg" alt="Inventrix-logo" width="300"></div> -->
+    <nav>
+      <ul class="menu">
+        <li class="active">
+          <a data-page="dashboard" class="nav-item">
+            <i class="fas fa-gauge"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a data-page="inventory" class="nav-item">
+            <i class="fas fa-box"></i>
+            <span>Inventory</span>
+          </a>
+        </li>
+        <li>
+          <a data-page="sales" class="nav-item">
+            <i class="fas fa-cart-shopping"></i>
+            <span>Sales</span>
+          </a>
+        </li>
+        <li>
+          <a data-page="reports" class="nav-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Reports</span>
+          </a>
+        </li>
+        <li>
+          <a data-page="suppliers" class="nav-item">
+            <i class="fas fa-truck"></i>
+            <span>Suppliers</span>
+          </a>
+        </li>
+        <li>
+          <a data-page="settings" class="nav-item">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </a>
+        </li>
+        <li class="logout">
+          <a data-page="logout" class="nav-item">
+            <i class="fas fa-right-to-bracket"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="main-content">
+    <div class="top-nav-bar">
+      <div class="nav-bar-title">
+        <span class="home">Home</span>
+        <h2>Dashboard</h2>
+      </div>
+      <div class="nav-bar-main">
+        <div class="search-bar">
+          <i class="fas fa-magnifying-glass"></i>
+          <input type="text" class="search-bar-input" placeholder="search items, sales, suppliers" />
+          <i class="fas fa-bell"></i>
+          <img src="profile-pic.jpeg" class="avatar" alt="Inventrix user avatar" />
+        </div>
+      </div>
+    </div>
+    <section class="page active dashboard" id="dashboard">
+      <div class="card-container">
+        <h2>Today's data</h2>
+        <div class="card-wrapper">
+          <div class="card light-red one">
+            <div class="card-text">
+              <span class="card-title">Total Inventory Value</span>
+              <span class="amount">$10,450,342</span>
+              <span class="details">Based on current stock levels</span>
+            </div>
+            <div class="card-icon">
+              <i class="fas fa-boxes-stacked dark-red"></i>
+            </div>
+          </div>
+          <div class="card light-purple two">
+            <div class="card-text">
+              <span class="card-title">Low Stock Items</span>
+              <span class="amount">8 items low</span>
+              <span class="details">Below reorder threshold</span>
+            </div>
+            <div class="card-icon">
+              <i class="fas fa-box-open dark-purple"></i>
+            </div>
+          </div>
+          <div class="card light-blue three">
+            <div class="card-text">
+              <span class="card-title">Today's Sales</span>
+              <span class="amount">$550,432</span>
+              <span class="details">Across all completed orders</span>
+            </div>
+            <div class="card-icon">
+              <i class="fas fa-chart-line dark-blue"></i>
+            </div>
+          </div>
+          <div class="card light-green four">
+            <div class="card-text">
+              <span class="card-title">Monthly Revenue</span>
+              <span class="amount revenue">$22.8M</span>
+              <span class="details last">December 25</span>
+            </div>
+            <div class="card-icon">
+              <i class="fas fa-money-bill-trend-up dark-green"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-section">
+        <h2 class="title">Sales Overview</h2>
+        <div class="chart-card">
+          <canvas id="salesChart"></canvas>
+        </div>
+      </div>
+      <div class="recent-activity">
+        <h2 class="title">Recent Activity</h2>
+
+        <ul class="activity-list">
+
+          <li class="activity-item">
+            <i class="fas fa-cart-shopping activity-icon sale"></i>
+            <div class="activity-text">
+              <p><strong>Sale recorded:</strong> 5 × Rice</p>
+              <small>2 minutes ago</small>
+            </div>
+          </li>
+
+          <li class="activity-item">
+            <i class="fas fa-plus activity-icon add"></i>
+            <div class="activity-text">
+              <p><strong>New item added:</strong> Printer Ink</p>
+              <small>10 minutes ago</small>
+            </div>
+          </li>
+
+          <li class="activity-item">
+            <i class="fas fa-triangle-exclamation activity-icon warning"></i>
+            <div class="activity-text">
+              <p><strong>Low stock:</strong> Sugar</p>
+              <small>30 minutes ago</small>
+            </div>
+          </li>
+
+          <li class="activity-item">
+            <i class="fas fa-pen activity-icon edit"></i>
+            <div class="activity-text">
+              <p><strong>Price updated:</strong> Laptop</p>
+              <small>1 hour ago</small>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+      <div class="alerts">
+        <h2 class="title">Alerts</h2>
+
+        <ul class="alert-list">
+
+          <li class="alert-item">
+            <span class="dot"></span>
+            <div class="alert-text">
+              <p><strong>Out of stock:</strong> Sugar</p>
+              <small>Just now</small>
+            </div>
+          </li>
+
+          <li class="alert-item ">
+            <span class="dot"></span>
+            <div class="alert-text">
+              <p><strong>Low stock:</strong> Rice (3 left)</p>
+              <small>5 mins ago</small>
+            </div>
+          </li>
+
+          <li class="alert-item info">
+            <span class="dot"></span>
+            <div class="alert-text">
+              <p><strong>Pending payment:</strong> Invoice #204</p>
+              <small>20 mins ago</small>
+            </div>
+          </li>
+
+          <li class="alert-item success">
+            <span class="dot"></span>
+            <div class="alert-text">
+              <p><strong>Stock updated:</strong> Printer Ink</p>
+              <small>1 hour ago</small>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="page active inventory" id="inventory">
+      <div class="inv-header">
+        <h2 class="title">Inventory</h2>
+        <span class="inv-sub-t">Manage stock, monitor stock levels, search items in stock.</span>
+      </div>
+      <div class="card-container">
+        <h2 class="title">Overview</h2>
+        <div class="card-wrapper">
+          <div class="inv-card light-green">
+            <div class="card-text">
+              <span class="card-title">Total Items</span>
+              <span class="amount">4,638</span>
+              <span class="details">Number of items in stock</span>
+            </div>
+            <div class="card-icon">
+              <i class="fas fa-cubes dark-green"></i>
+            </div>
+          </div>
+          <div class="inv-card light-blue">
+            <div class="card-text">
+              <span class="card-title">Total Quantity</span>
+              <span class="amount">334,638</span>
+              <span class="details">Available units of items</span>
+            </div>
+            <div class="card-icon">
+              <i class="fas fa-layer-group dark-blue"></i>
+            </div>
+          </div>
+          <div class="inv-card light-yellow">
+            <div class="card-text">
+              <span class="card-title">Low Stock Items</span>
+              <span class="amount">241</span>
+              <span class="details">below reorder threshold</span>
+            </div>
+            <div class="card-icon">
+              <i class="fas fa-triangle-exclamation dark-yellow"></i>
+            </div>
+          </div>
+          <div class="inv-card light-red">
+            <div class="card-text">
+              <span class="card-title">Out Of Sctock Items</span>
+              <span class="amount">92</span>
+              <span class="details">From total low stock items</span>
+            </div>
+            <div class="card-icon">
+              <i class="fas fa-circle-xmark dark-red"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cont-container">
+        <h2 class="title">Manage Stock</h2>
+        <div class="controls">
+          <div class="controls-left">
+            <i class="fas fa-magnifying-glass"></i>
+            <input type="search" placeholder="search items">
+          </div>
+          <div class="controls-right">
+            <div class="cont-buttons">
+              <button class="add-item btn primary"><i class="fas fa-circle-plus"></i>Add</button>
+              <button class="export btn secondary"><i class="fas fa-file-import"></i>Import</button>
+              <button class="export btn tertiary"><i class="fas fa-file-export"></i>Export</button>
+              <button type="button" class="btn filter-toggle dark-green"><i class="fas fa-filter"></i>Filter</button>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown">
+          <div class="filter-panel">
+            <form class="filters">
+              <details>
+                <summary>Click to filter<i class="fas fa-bars"></i></summary>
+                <select>
+                  <option value="">Category</option>
+                  <option value="">All</option>
+                  <option value="">Electronis</option>
+                  <option value="">Beverages</option>
+                  <option value="">Stationaries</option>
+                </select>
+                <select>
+                  <option value="">Status</option>
+                  <option value="">In Stock</option>
+                  <option value="">Low Stock</option>
+                  <option value="">Out Of Stock</option>
+                </select>
+                <select>
+                  <option class="option" value="">Supplier</option>
+                  <option value="">Golden Farms Ltd</option>
+                  <option value="">Fresh Oils Nigeria</option>
+                  <option value="">BagWorld Supplies</option>
+                  <option value="">OfficeMart Stationers</option>
+                  <option value="">TechSource Electronics</option>
+                  <option value="">PrintPro Systems</option>
+                  <option value="">Comfort Furniture Ltd</option>
+                  <option value="">PowerGen Africa</option>
+                </select>
+                <fieldset>
+                  <legend>Price Range:</legend>
+                  <input type="number" placeholder="Min" />
+                  <input type="number" placeholder="Max" />
+                </fieldset>
+                <fieldset>
+                  <legend>Date Added:</legend>
+                  <label>From</label>
+                  <input type="date" placeholder="date added" />
+                  <label>To</label>
+                  <input type="date" placeholder="date added" />
+                </fieldset>
+                <div class="filter-btn">
+                  <button class="btn dark-green" type="apply">Apply</button>
+                  <button class="btn tertiary" type="reset">Reset</button>
+                </div>
+              </details>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="inv-table-container">
+        <h2 class="title">Inventory List</h2>
+        <div class="inv-table">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>SKU</th>
+                <th>Item Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Supplier</th>
+                <th>Status</th>
+                <th>Added</th>
+                <th>Updated</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>001</td>
+                <td>ELEC-TS-001</td>
+                <td>Wireless Mouse</td>
+                <td>Electronics</td>
+                <td>45</td>
+                <td>₦6,500</td>
+                <td>TechSource Electronics</td>
+                <td class="available">In Stock</td>
+                <td>25-09-12</td>
+                <td>25-12-18</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>002</td>
+                <td>ELEC-TS-002</td>
+                <td>Mechanical Keyboard</td>
+                <td>Electronics</td>
+                <td>12</td>
+                <td>₦28,000</td>
+                <td>TechSource Electronics</td>
+                <td class="low-stock">Low Stock</td>
+                <td>25-08-30</td>
+                <td>25-12-20</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>003</td>
+                <td>BEV-GF-010</td>
+                <td>Sunflower Oil (5L)</td>
+                <td>Beverages</td>
+                <td>0</td>
+                <td>₦14,500</td>
+                <td>Golden Farms Ltd</td>
+                <td class="unavailable">Out of Stock</td>
+                <td>25-07-21</td>
+                <td>25-12-01</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>004</td>
+                <td>STAT-OM-023</td>
+                <td>A4 Printing Paper (500 sheets)</td>
+                <td>Stationery</td>
+                <td>120</td>
+                <td>₦7,200</td>
+                <td>OfficeMart Stationers</td>
+                <td class="available">In Stock</td>
+                <td>25-10-05</td>
+                <td>25-12-22</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>005</td>
+                <td>STAT-BW-014</td>
+                <td>Brown Envelopes (Pack)</td>
+                <td>Stationery</td>
+                <td>18</td>
+                <td>₦2,000</td>
+                <td>BagWorld Supplies</td>
+                <td class="low-stock">Low Stock</td>
+                <td>25-09-01</td>
+                <td>25-12-19</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>006</td>
+                <td>ELEC-PP-008</td>
+                <td>Laser Printer</td>
+                <td>Electronics</td>
+                <td>6</td>
+                <td>₦185,000</td>
+                <td>PrintPro Systems</td>
+                <td class="low-stock">Low Stock</td>
+                <td>25-06-15</td>
+                <td>25-12-10</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>007</td>
+                <td>FURN-CF-002</td>
+                <td>Office Chair (Ergonomic)</td>
+                <td>Furniture</td>
+                <td>22</td>
+                <td>₦55,000</td>
+                <td>Comfort Furniture Ltd</td>
+                <td class="available">In Stock</td>
+                <td>25-08-09</td>
+                <td>25-12-17</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>008</td>
+                <td>POW-PG-005</td>
+                <td>Portable Generator</td>
+                <td>Electronics</td>
+                <td>3</td>
+                <td>₦320,000</td>
+                <td>PowerGen Africa</td>
+                <td class="low-stock">Low Stock</td>
+                <td>25-05-11</td>
+                <td>25-11-29</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>009</td>
+                <td>BEV-FO-019</td>
+                <td>Vegetable Oil (1L)</td>
+                <td>Beverages</td>
+                <td>96</td>
+                <td>₦3,200</td>
+                <td>Fresh Oils Nigeria</td>
+                <td class="available">In Stock</td>
+                <td>25-10-18</td>
+                <td>25-12-23</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>010</td>
+                <td>STAT-OM-031</td>
+                <td>Stapler Machine</td>
+                <td>Stationery</td>
+                <td>9</td>
+                <td>₦3,800</td>
+                <td>OfficeMart Stationers</td>
+                <td class="low-stock">Low Stock</td>
+                <td>25-09-25</td>
+                <td>25-12-21</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>011</td>
+                <td>ELEC-TS-015</td>
+                <td>USB-C Charging Cable</td>
+                <td>Electronics</td>
+                <td>210</td>
+                <td>₦2,500</td>
+                <td>TechSource Electronics</td>
+                <td class="available">In Stock</td>
+                <td>25-11-02</td>
+                <td>25-12-24</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>012</td>
+                <td>FURN-CF-010</td>
+                <td>Wooden Office Desk</td>
+                <td>Furniture</td>
+                <td>0</td>
+                <td>₦120,000</td>
+                <td>Comfort Furniture Ltd</td>
+                <td class="unavailable">Out of Stock</td>
+                <td>25-07-04</td>
+                <td>25-11-15</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>013</td>
+                <td>STAT-BW-028</td>
+                <td>Plastic Files (Pack)</td>
+                <td>Stationery</td>
+                <td>64</td>
+                <td>₦4,500</td>
+                <td>BagWorld Supplies</td>
+                <td class="available">In Stock</td>
+                <td>25-10-01</td>
+                <td>25-12-22</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>014</td>
+                <td>ELEC-PP-021</td>
+                <td>Ink Cartridge</td>
+                <td>Electronics</td>
+                <td>7</td>
+                <td>₦18,000</td>
+                <td>PrintPro Systems</td>
+                <td class="low-stock">Low Stock</td>
+                <td>25-09-14</td>
+                <td>25-12-18</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>015</td>
+                <td>BEV-GF-033</td>
+                <td>Rice (50kg)</td>
+                <td>Beverages</td>
+                <td>14</td>
+                <td>₦78,000</td>
+                <td>Golden Farms Ltd</td>
+                <td class="low-stock">Low Stock</td>
+                <td>25-08-20</td>
+                <td>25-12-16</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>016</td>
+                <td>ELEC-TS-022</td>
+                <td>Bluetooth Speaker</td>
+                <td>Electronics</td>
+                <td>34</td>
+                <td>₦25,000</td>
+                <td>TechSource Electronics</td>
+                <td class="available">In Stock</td>
+                <td>25-09-10</td>
+                <td>25-12-20</td>
+                <td class="t-action"><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>017</td>
+                <td>BEV-FO-025</td>
+                <td>Coconut Oil (2L)</td>
+                <td>Beverages</td>
+                <td>0</td>
+                <td>₦7,500</td>
+                <td>Fresh Oils Nigeria</td>
+                <td class="unavailable">Out of Stock</td>
+                <td>25-08-12</td>
+                <td>25-12-18</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>018</td>
+                <td>FURN-CF-018</td>
+                <td>Bookshelf (4-tier)</td>
+                <td>Furniture</td>
+                <td>11</td>
+                <td>₦45,000</td>
+                <td>Comfort Furniture Ltd</td>
+                <td class="low-stock">Low Stock</td>
+                <td>25-09-22</td>
+                <td>25-12-21</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>019</td>
+                <td>STAT-BW-035</td>
+                <td>Highlighters (Pack)</td>
+                <td>Stationery</td>
+                <td>55</td>
+                <td>₦3,200</td>
+                <td>BagWorld Supplies</td>
+                <td class="available">In Stock</td>
+                <td>25-10-12</td>
+                <td>25-12-22</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+              <tr>
+                <td>020</td>
+                <td>POW-PG-011</td>
+                <td>Inverter Battery</td>
+                <td>Electronics</td>
+                <td>2</td>
+                <td>₦92,000</td>
+                <td>PowerGen Africa</td>
+                <td class="low-stock">Low Stock</td>
+                <td>25-05-20</td>
+                <td>25-12-19</td>
+                <td><i class="fas fa-trash"></i><i class="fas fa-pencil"></i></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Total PRD: 20</td>
+                <td></td>
+                <td>Total QTY: 698</td>
+                <td></td>
+                <td></td>
+                <td>Total Price: ₦1,020,900</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </section>
+    <section class="active" id="sales">
+      <div class="sales-page">
+
+        <!-- Summary Cards -->
+        <div class="inv-card light-yellow">
+          <div class="card-text">
+            <span class="card-title">Low Stock Items</span>
+            <span class="amount">241</span>
+            <span class="details">below reorder threshold</span>
+          </div>
+          <div class="card-icon">
+            <i class="fas fa-triangle-exclamation dark-yellow"></i>
+          </div>
+        </div>
+        <div class="inv-card light-red">
+          <div class="card-text">
+            <span class="card-title">Out Of Sctock Items</span>
+            <span class="amount">92</span>
+            <span class="details">From total low stock items</span>
+          </div>
+          <div class="card-icon">
+            <i class="fas fa-circle-xmark dark-red"></i>
+          </div>
+        </div>
+                <div class="inv-card light-red">
+          <div class="card-text">
+            <span class="card-title">Out Of Sctock Items</span>
+            <span class="amount">92</span>
+            <span class="details">From total low stock items</span>
+          </div>
+          <div class="card-icon">
+            <i class="fas fa-circle-xmark dark-red"></i>
+          </div>
+        </div>
+                <div class="inv-card light-red">
+          <div class="card-text">
+            <span class="card-title">Out Of Sctock Items</span>
+            <span class="amount">92</span>
+            <span class="details">From total low stock items</span>
+          </div>
+          <div class="card-icon">
+            <i class="fas fa-circle-xmark dark-red"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sales Chart -->
+      <div class="chart-container">
+        <canvas id="salesChart"></canvas>
+      </div>
+
+
+      <!-- Sales Table -->
+      <div class="table-container">
+        <table class="sales-table">
+          <thead>
+            <tr>
+              <th><input type="checkbox" /></th>
+              <th>Order ID</th>
+              <th>Product Name</th>
+              <th>SKU</th>
+              <th>Quantity</th>
+              <th>Price (₦)</th>
+              <th>Total (₦)</th>
+              <th>Customer</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Example row -->
+            <tr>
+              <td><input type="checkbox" /></td>
+              <td>ORD-001</td>
+              <td>Wireless Mouse</td>
+              <td>ELEC-TS-001</td>
+              <td>3</td>
+              <td>₦6,500</td>
+              <td>₦19,500</td>
+              <td>John Doe</td>
+              <td>Paid</td>
+              <td>2026-01-18</td>
+              <td>
+                <button class="btn secondary">View</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+  </div>
+
+  </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+
+</html>
